@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="UI/UX Designer Portfolio — crafting intuitive, beautiful digital experiences." />
+<title>Your Name — UI/UX Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet"/>
+
+<style>
+/* ─────────────────────────────────────────────
+   RESET & BASE
+───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:           #0d0b14;
+  --bg2:          #13101f;
+  --bg3:          #1a1528;
+  --card:         rgba(22,18,34,0.7);
+  --card-border:  #2e2547;
+  --pink:         #f4a7c3;
+  --pink-light:   #fad4e7;
+  --pink-deep:    #e07aab;
+  --violet:       #b99ef5;
+  --violet-light: #d8ccff;
+  --violet-deep:  #8b6de3;
+  --rose:         #f7c4d8;
+  --lavender:     #c8baf9;
+  --text:         #f0ecff;
+  --text-muted:   #9b93be;
+  --text-dim:     #6a6292;
+  --glow-pink:    rgba(244,167,195,0.12);
+  --glow-violet:  rgba(185,158,245,0.12);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* Ambient orbs */
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(80px);
+  opacity: 0.18;
+  animation: orbdrift 12s ease-in-out infinite alternate;
+}
+.orb-1 { width: 560px; height: 560px; top: -160px; left: -180px; background: #b99ef5; animation-duration: 14s; }
+.orb-2 { width: 420px; height: 420px; bottom: -100px; right: -120px; background: #f4a7c3; animation-duration: 11s; animation-delay: -3s; }
+.orb-3 { width: 300px; height: 300px; top: 40%; left: 50%; transform: translate(-50%,-50%); background: #8b6de3; animation-duration: 9s; animation-delay: -6s; }
+@keyframes orbdrift {
+  from { transform: translateY(0) scale(1); }
+  to   { transform: translateY(40px) scale(1.08); }
+}
+
+/* ─────────────────────────────────────────────
+   NAV
+───────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.2rem 3rem;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(13,11,20,0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 0.5px solid rgba(46,37,71,0.5);
+  transition: padding 0.3s;
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--violet-light);
+  letter-spacing: 0.08em;
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 2.2rem; list-style: none; }
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: color 0.25s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute; bottom: -3px; left: 0; right: 0;
+  height: 0.5px; background: var(--pink);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s;
+}
+.nav-links a:hover { color: var(--pink); }
+.nav-links a:hover::after { transform: scaleX(1); }
+
+/* Hamburger (mobile) */
+.hamburger {
+  display: none;
+  flex-direction: column; gap: 5px;
+  cursor: pointer; background: none; border: none; padding: 4px;
+}
+.hamburger span {
+  display: block; width: 24px; height: 0.5px;
+  background: var(--text-muted); transition: all 0.3s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+.mobile-menu {
+  display: none;
+  position: fixed; top: 60px; left: 0; right: 0; z-index: 99;
+  background: rgba(13,11,20,0.97);
+  backdrop-filter: blur(24px);
+  padding: 1.5rem 2rem;
+  border-bottom: 0.5px solid var(--card-border);
+  flex-direction: column; gap: 1.2rem;
+}
+.mobile-menu a {
+  color: var(--text-muted); text-decoration: none;
+  font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase;
+  transition: color 0.2s;
+}
+.mobile-menu a:hover { color: var(--pink); }
+.mobile-menu.open { display: flex; }
+
+/* ─────────────────────────────────────────────
+   SECTIONS BASE
+───────────────────────────────────────────── */
+section { position: relative; z-index: 1; }
+
+.section-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--violet);
+  margin-bottom: 0.9rem;
+  display: flex; align-items: center; gap: 0.7rem;
+}
+.section-label::before {
+  content: '';
+  display: block; width: 22px; height: 0.5px;
+  background: var(--violet);
+}
+
+/* ─────────────────────────────────────────────
+   HERO
+───────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center;
+  padding: 8rem 3rem 5rem;
+  max-width: 960px;
+}
+.hero-eyebrow {
+  font-size: 0.73rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 1.8rem;
+  display: flex; align-items: center; gap: 0.9rem;
+  animation: fadein 1s ease both;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block; width: 36px; height: 0.5px;
+  background: var(--pink);
+}
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.5rem, 9vw, 7.5rem);
+  font-weight: 300;
+  line-height: 1.04;
+  margin-bottom: 1.6rem;
+  letter-spacing: -0.01em;
+  animation: fadein 1s 0.15s ease both;
+}
+.hero h1 em {
+  font-style: italic;
+  background: linear-gradient(135deg, var(--pink-light) 0%, var(--violet-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-desc {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 520px;
+  margin-bottom: 2.8rem;
+  line-height: 1.85;
+  animation: fadein 1s 0.3s ease both;
+}
+.hero-cta {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  animation: fadein 1s 0.45s ease both;
+}
+.scroll-hint {
+  position: absolute; bottom: 2.5rem; left: 3rem;
+  display: flex; align-items: center; gap: 0.7rem;
+  color: var(--text-dim); font-size: 0.7rem; letter-spacing: 0.15em;
+  text-transform: uppercase;
+  animation: fadein 1s 0.8s ease both;
+}
+.scroll-hint::after {
+  content: ''; display: block;
+  width: 0.5px; height: 36px;
+  background: linear-gradient(to bottom, var(--text-dim), transparent);
+  animation: scrollline 2s ease-in-out infinite;
+}
+@keyframes scrollline {
+  0%,100% { opacity: 0.3; transform: scaleY(1); }
+  50%      { opacity: 1;   transform: scaleY(1.3); }
+}
+
+/* ─────────────────────────────────────────────
+   BUTTONS
+───────────────────────────────────────────── */
+.btn {
+  padding: 0.72rem 1.9rem;
+  border-radius: 999px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.28s;
+  text-decoration: none;
+  display: inline-block;
+  border: none;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--pink-deep), var(--violet-deep));
+  color: #fff;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 36px rgba(185,158,245,0.28);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--violet-light);
+  border: 0.5px solid var(--violet-deep);
+}
+.btn-outline:hover { background: var(--glow-violet); transform: translateY(-2px); }
+.btn-sm {
+  padding: 0.4rem 1rem;
+  font-size: 0.72rem;
+  border-radius: 999px;
+}
+
+/* ─────────────────────────────────────────────
+   ABOUT
+───────────────────────────────────────────── */
+.about {
+  padding: 7rem 3rem;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 5rem;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+.about-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 1.3rem;
+}
+.about-text {
+  color: var(--text-muted);
+  font-size: 0.94rem;
+  margin-bottom: 1rem;
+  line-height: 1.85;
+}
+.skills-grid {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  margin-top: 1.8rem;
+}
+.skill-pill {
+  padding: 0.38rem 0.95rem;
+  background: rgba(22,18,34,0.8);
+  border: 0.5px solid var(--card-border);
+  border-radius: 999px;
+  font-size: 0.76rem;
+  color: var(--lavender);
+  transition: all 0.2s;
+}
+.skill-pill:hover { border-color: var(--violet-deep); color: var(--violet-light); }
+.stats { display: flex; flex-direction: column; gap: 2rem; justify-content: center; }
+.stat-item {
+  border-left: 1.5px solid var(--pink-deep);
+  padding-left: 1.4rem;
+  transition: border-color 0.3s;
+}
+.stat-item:hover { border-color: var(--violet-deep); }
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: var(--pink-light);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+  letter-spacing: 0.04em;
+}
+
+/* ─────────────────────────────────────────────
+   WORKS
+───────────────────────────────────────────── */
+.works {
+  padding: 7rem 3rem;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+.works-header {
+  display: flex; justify-content: space-between;
+  align-items: flex-end; margin-bottom: 2rem;
+  flex-wrap: wrap; gap: 1rem;
+}
+.works-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+}
+.filter-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.filter-btn {
+  padding: 0.38rem 1.05rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  letter-spacing: 0.09em;
+  cursor: pointer;
+  border: 0.5px solid var(--card-border);
+  background: transparent;
+  color: var(--text-muted);
+  transition: all 0.22s;
+  font-family: 'DM Sans', sans-serif;
+}
+.filter-btn.active,
+.filter-btn:hover {
+  background: linear-gradient(135deg, rgba(244,167,195,0.1), rgba(185,158,245,0.1));
+  border-color: var(--violet-deep);
+  color: var(--violet-light);
+}
+
+/* Works grid */
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.6rem;
+}
+
+/* Work card */
+.work-card {
+  background: var(--card);
+  border: 0.5px solid var(--card-border);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: transform 0.32s, border-color 0.32s, box-shadow 0.32s;
+  backdrop-filter: blur(8px);
+}
+.work-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--violet-deep);
+  box-shadow: 0 20px 48px rgba(139,109,227,0.12);
+}
+.work-img-wrap {
+  width: 100%; aspect-ratio: 4/3;
+  overflow: hidden; position: relative;
+  background: var(--bg3);
+  cursor: pointer;
+}
+.work-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.4s;
+}
+.work-card:hover .work-img-wrap img { transform: scale(1.04); }
+.work-img-overlay {
+  position: absolute; inset: 0;
+  background: rgba(13,11,20,0.45);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.3s;
+}
+.work-card:hover .work-img-overlay { opacity: 1; }
+.overlay-view {
+  padding: 0.5rem 1.2rem;
+  border: 0.5px solid rgba(255,255,255,0.4);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+  cursor: pointer;
+  background: none;
+  font-family: 'DM Sans', sans-serif;
+  transition: background 0.2s;
+}
+.overlay-view:hover { background: rgba(255,255,255,0.1); }
+
+.work-empty {
+  width: 100%; aspect-ratio: 4/3;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 0.5rem;
+  background: linear-gradient(135deg, #1a1528, #201838);
+  color: var(--text-dim); font-size: 0.74rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.work-info { padding: 1.1rem 1.3rem 1.4rem; }
+.work-tag {
+  font-size: 0.66rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--pink);
+  margin-bottom: 0.3rem;
+}
+.work-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem; font-weight: 400;
+  color: var(--text); margin-bottom: 0.25rem;
+}
+.work-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.65; }
+.work-actions { display: flex; gap: 0.45rem; margin-top: 0.9rem; }
+.work-action {
+  padding: 0.28rem 0.8rem;
+  border-radius: 999px; font-size: 0.68rem;
+  cursor: pointer; border: 0.5px solid var(--card-border);
+  background: transparent; color: var(--text-muted);
+  transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.05em;
+}
+.work-action:hover { border-color: var(--violet); color: var(--violet); }
+.work-action.del:hover { border-color: #f09595; color: #f09595; }
+
+/* Add card */
+.add-card {
+  background: transparent;
+  border: 1px dashed var(--card-border);
+  border-radius: 18px;
+  min-height: 290px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 0.9rem;
+  cursor: pointer;
+  transition: all 0.28s;
+  position: relative; overflow: hidden;
+}
+.add-card:hover {
+  border-color: var(--violet-deep);
+  background: var(--glow-violet);
+}
+.add-card-input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.add-icon {
+  width: 52px; height: 52px;
+  border: 0.5px solid var(--violet-deep);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; color: var(--violet);
+  transition: all 0.25s;
+}
+.add-card:hover .add-icon { background: var(--glow-violet); }
+.add-card p { font-size: 0.82rem; color: var(--text-dim); letter-spacing: 0.06em; }
+.add-card span { font-size: 0.7rem; color: var(--text-dim); }
+
+/* ─────────────────────────────────────────────
+   PROCESS
+───────────────────────────────────────────── */
+.process {
+  padding: 7rem 3rem;
+  max-width: 940px; margin: 0 auto;
+}
+.process-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300; margin-bottom: 3.5rem;
+}
+.process-steps { display: flex; flex-direction: column; }
+.process-step {
+  display: grid; grid-template-columns: 44px 1fr;
+  gap: 1.8rem; position: relative;
+}
+.process-step:not(:last-child)::after {
+  content: ''; position: absolute;
+  left: 21.5px; top: 44px; bottom: -24px;
+  width: 0.5px;
+  background: linear-gradient(to bottom, var(--violet-deep), transparent);
+}
+.step-num {
+  width: 44px; height: 44px; flex-shrink: 0;
+  border: 0.5px solid var(--violet-deep);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem; color: var(--violet-light);
+  background: var(--bg2); z-index: 1;
+  margin-bottom: 2.5rem;
+  transition: all 0.3s;
+}
+.process-step:hover .step-num {
+  background: var(--glow-violet);
+  border-color: var(--violet-light);
+}
+.step-body { padding-top: 0.6rem; padding-bottom: 2.5rem; }
+.step-body h4 {
+  font-size: 1rem; font-weight: 500;
+  color: var(--pink-light); margin-bottom: 0.45rem;
+  letter-spacing: 0.03em;
+}
+.step-body p { font-size: 0.88rem; color: var(--text-muted); max-width: 580px; }
+
+/* ─────────────────────────────────────────────
+   CONTACT
+───────────────────────────────────────────── */
+.contact {
+  padding: 7rem 3rem 5rem;
+  text-align: center;
+  max-width: 720px; margin: 0 auto;
+}
+.contact-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 300; line-height: 1.1;
+  margin-bottom: 1.2rem;
+}
+.contact-title em {
+  font-style: italic;
+  background: linear-gradient(135deg, var(--pink-light), var(--lavender));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.contact-sub {
+  color: var(--text-muted); margin-bottom: 2.8rem;
+  font-size: 1rem; line-height: 1.8;
+}
+.social-links {
+  display: flex; justify-content: center;
+  gap: 0.9rem; flex-wrap: wrap; margin-top: 2.5rem;
+}
+.social-link {
+  padding: 0.5rem 1.3rem; border-radius: 999px;
+  border: 0.5px solid var(--card-border);
+  color: var(--text-muted); font-size: 0.76rem;
+  letter-spacing: 0.1em; text-decoration: none;
+  transition: all 0.22s;
+}
+.social-link:hover { border-color: var(--pink); color: var(--pink); }
+
+/* ─────────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────────── */
+footer {
+  border-top: 0.5px solid var(--card-border);
+  padding: 1.6rem 3rem;
+  display: flex; justify-content: space-between;
+  align-items: center; position: relative; z-index: 1;
+  font-size: 0.74rem; color: var(--text-dim);
+}
+
+/* ─────────────────────────────────────────────
+   MODAL
+───────────────────────────────────────────── */
+.modal-backdrop {
+  display: none; position: fixed; inset: 0; z-index: 200;
+  background: rgba(13,11,20,0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  align-items: center; justify-content: center; padding: 2rem;
+}
+.modal-backdrop.open { display: flex; }
+.modal {
+  background: var(--bg2);
+  border: 0.5px solid var(--card-border);
+  border-radius: 22px;
+  padding: 2.2rem;
+  max-width: 500px; width: 100%;
+  position: relative;
+  animation: modalin 0.3s ease;
+}
+@keyframes modalin {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.modal h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.9rem; font-weight: 300;
+  margin-bottom: 1.4rem; color: var(--violet-light);
+}
+.modal label {
+  font-size: 0.73rem; color: var(--text-muted);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  display: block; margin-bottom: 0.3rem;
+}
+.modal input[type="text"],
+.modal select,
+.modal textarea {
+  width: 100%;
+  background: var(--bg3);
+  border: 0.5px solid var(--card-border);
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  margin-bottom: 1.1rem;
+  outline: none;
+  transition: border-color 0.22s;
+}
+.modal input[type="text"]:focus,
+.modal select:focus,
+.modal textarea:focus { border-color: var(--violet-deep); }
+.modal select option { background: var(--bg2); }
+.modal textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+.modal-preview-wrap {
+  width: 100%; aspect-ratio: 16/9;
+  background: var(--bg3);
+  border-radius: 10px; margin-bottom: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; border: 0.5px dashed var(--card-border);
+  position: relative; cursor: pointer;
+  transition: border-color 0.2s;
+}
+.modal-preview-wrap:hover { border-color: var(--violet-deep); }
+.modal-preview-wrap img { width:100%; height:100%; object-fit:cover; display:none; }
+.preview-hint {
+  position: absolute; font-size: 0.76rem;
+  color: var(--text-dim); text-align: center; padding: 1rem;
+  pointer-events: none;
+}
+.modal-file-input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.modal-close {
+  position: absolute; top: 1.1rem; right: 1.2rem;
+  background: none; border: none; color: var(--text-dim);
+  font-size: 1.3rem; cursor: pointer; line-height: 1;
+  transition: color 0.2s;
+}
+.modal-close:hover { color: var(--pink); }
+.modal-actions { display: flex; gap: 0.8rem; justify-content: flex-end; margin-top: 0.8rem; }
+
+/* ─────────────────────────────────────────────
+   LIGHTBOX
+───────────────────────────────────────────── */
+.lightbox {
+  display: none; position: fixed; inset: 0; z-index: 300;
+  background: rgba(13,11,20,0.96);
+  backdrop-filter: blur(12px);
+  align-items: center; justify-content: center; padding: 2rem;
+}
+.lightbox.open { display: flex; }
+.lightbox img {
+  max-width: 92vw; max-height: 88vh;
+  border-radius: 14px;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+}
+.lightbox-close {
+  position: fixed; top: 1.5rem; right: 2.2rem;
+  background: none; border: none;
+  color: var(--text-muted); font-size: 2rem;
+  cursor: pointer; transition: color 0.2s; line-height: 1;
+}
+.lightbox-close:hover { color: var(--pink); }
+
+/* ─────────────────────────────────────────────
+   FADE-IN ANIMATION
+───────────────────────────────────────────── */
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.4rem; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .hero { padding: 6rem 1.4rem 4rem; }
+  .about { grid-template-columns: 1fr; gap: 2.5rem; padding: 5rem 1.4rem; }
+  .works, .process, .contact { padding: 5rem 1.4rem; }
+  .works-grid { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 0.4rem; text-align: center; padding: 1.2rem 1.4rem; }
+  .scroll-hint { left: 1.4rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Ambient orbs -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">your name.</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#works">Works</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about"   onclick="closeMobile()">About</a>
+  <a href="#works"   onclick="closeMobile()">Works</a>
+  <a href="#process" onclick="closeMobile()">Process</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-eyebrow">UI / UX Designer</div>
+  <h1>Designing with<br/><em>intention</em><br/>and wonder.</h1>
+  <p class="hero-desc">I craft digital experiences that feel intuitive, beautiful, and human — from wireframes to polished interfaces that leave a lasting impression.</p>
+  <div class="hero-cta">
+    <a href="#works"   class="btn btn-primary">View My Work</a>
+    <a href="#contact" class="btn btn-outline">Let's Talk</a>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="reveal">
+    <div class="section-label">About Me</div>
+    <h2 class="about-title">Hello, I'm a designer who truly cares.</h2>
+    <p class="about-text">I believe good design is invisible — it works so naturally that users don't notice it. I specialize in UI/UX design, creating everything from pubmats and social graphics to full product wireframes and interactive prototypes.</p>
+    <p class="about-text">My design process is rooted in empathy: understanding people before touching a single frame.</p>
+    <div class="skills-grid">
+      <span class="skill-pill">Figma</span>
+      <span class="skill-pill">Wireframing</span>
+      <span class="skill-pill">Prototyping</span>
+      <span class="skill-pill">Pubmats</span>
+      <span class="skill-pill">Design Systems</span>
+      <span class="skill-pill">User Research</span>
+      <span class="skill-pill">Adobe CC</span>
+      <span class="skill-pill">Motion Design</span>
+    </div>
+  </div>
+  <div class="stats reveal">
+    <div class="stat-item">
+      <div class="stat-num">32+</div>
+      <div class="stat-label">Projects completed</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Years of experience</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">18+</div>
+      <div class="stat-label">Happy clients</div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKS -->
+<section class="works" id="works">
+  <div class="works-header reveal">
+    <div>
+      <div class="section-label">Portfolio</div>
+      <h2 class="works-title">Selected Works</h2>
+    </div>
+  </div>
+
+  <div class="filter-tabs" id="filterTabs">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="pubmat">Pubmats</button>
+    <button class="filter-btn" data-filter="wireframe">Wireframes</button>
+    <button class="filter-btn" data-filter="ui">UI Design</button>
+    <button class="filter-btn" data-filter="branding">Branding</button>
+    <button class="filter-btn" data-filter="other">Other</button>
+  </div>
+
+  <div class="works-grid" id="worksGrid">
+    <!-- Cards rendered by JS -->
+    <div class="add-card" id="addCardBtn">
+      <input type="file" accept="image/*" multiple class="add-card-input" id="bulkInput" />
+      <div class="add-icon">+</div>
+      <p>Add New Work</p>
+      <span>Click to upload image(s)</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="reveal">
+    <div class="section-label">How I Work</div>
+    <h2 class="process-title">My Design Process</h2>
+  </div>
+  <div class="process-steps">
+    <div class="process-step reveal">
+      <div class="step-num">01</div>
+      <div class="step-body">
+        <h4>Discover</h4>
+        <p>I start by deeply understanding your goals, audience, and context — through conversations, research, and careful listening. No assumptions, only clarity.</p>
+      </div>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-num">02</div>
+      <div class="step-body">
+        <h4>Define</h4>
+        <p>Synthesizing insights into clear design problems. What do users need? What does success look like? A well-defined problem is already half-solved.</p>
+      </div>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-num">03</div>
+      <div class="step-body">
+        <h4>Design</h4>
+        <p>From rough sketches to high-fidelity mockups — iterating quickly, testing ideas, keeping you in the loop every step of the way.</p>
+      </div>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-num">04</div>
+      <div class="step-body">
+        <h4>Deliver</h4>
+        <p>Polished, developer-ready files with clear documentation and handoff notes. Plus ongoing support as your product grows and evolves.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="reveal">
+    <div class="section-label" style="justify-content:center;">Get In Touch</div>
+    <h2 class="contact-title">Let's make something<br/><em>beautiful</em> together.</h2>
+    <p class="contact-sub">Open for freelance projects, collaborations,<br/>and exciting new opportunities.</p>
+    <!-- ✏️ Replace with your actual email -->
+    <a href="mailto:hello@yourname.com" class="btn btn-primary">Say Hello ✉</a>
+    <div class="social-links">
+      <!-- ✏️ Replace # with your actual profile links -->
+      <a href="#" class="social-link" target="_blank" rel="noopener">Behance</a>
+      <a href="#" class="social-link" target="_blank" rel="noopener">Dribbble</a>
+      <a href="#" class="social-link" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#" class="social-link" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <!-- ✏️ Replace "Your Name" with your actual name -->
+  <span>© 2026 Your Name. All rights reserved.</span>
+  <span>Built with intention ✦</span>
+</footer>
+
+<!-- ADD / EDIT MODAL -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal">
+    <button class="modal-close" id="modalClose">✕</button>
+    <h3 id="modalHeading">Add New Work</h3>
+
+    <label>Project Image</label>
+    <div class="modal-preview-wrap" id="previewWrap">
+      <img id="previewImg" alt="preview"/>
+      <span class="preview-hint" id="previewHint">Click to upload an image</span>
+      <input type="file" accept="image/*" class="modal-file-input" id="modalFileInput"/>
+    </div>
+
+    <label>Project Title</label>
+    <input type="text" id="wTitle" placeholder="e.g. Event Pubmat — Glow Night"/>
+
+    <label>Category</label>
+    <select id="wCategory">
+      <option value="pubmat">Pubmat</option>
+      <option value="wireframe">Wireframe</option>
+      <option value="ui">UI Design</option>
+      <option value="branding">Branding</option>
+      <option value="other">Other</option>
+    </select>
+
+    <label>Short Description</label>
+    <textarea id="wDesc" placeholder="A brief description of the project…"></textarea>
+
+    <div class="modal-actions">
+      <button class="btn btn-outline btn-sm" id="cancelBtn">Cancel</button>
+      <button class="btn btn-primary btn-sm" id="saveBtn">Save Work</button>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lbClose">✕</button>
+  <img id="lbImg" src="" alt=""/>
+</div>
+
+<script>
+/* ─────────────────────────────────────────────
+   DATA & STORAGE
+   Works are saved to localStorage so they persist
+   when you host the file (no server needed).
+───────────────────────────────────────────── */
+const STORAGE_KEY = 'portfolio_works_v3';
+let works = [];
+let editId = null;
+let activeFilter = 'all';
+let pendingImg = null;
+
+function loadWorks() {
+  try { works = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+  catch(e) { works = []; }
+  renderWorks();
+}
+
+function saveWorks() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(works)); }
+  catch(e) {
+    alert('Storage full — try removing some images or use smaller files.');
+  }
+}
+
+/* ─────────────────────────────────────────────
+   MOBILE NAV
+───────────────────────────────────────────── */
+const hamburger   = document.getElementById('hamburger');
+const mobileMenu  = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+function closeMobile() {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+}
+
+/* ─────────────────────────────────────────────
+   SCROLL REVEAL
+───────────────────────────────────────────── */
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ─────────────────────────────────────────────
+   WORKS RENDER
+───────────────────────────────────────────── */
+const worksGrid = document.getElementById('worksGrid');
+const addCardBtn = document.getElementById('addCardBtn');
+
+const CAT_LABELS = {
+  pubmat:'Pubmat', wireframe:'Wireframe',
+  ui:'UI Design', branding:'Branding', other:'Other'
+};
+
+function renderWorks() {
+  Array.from(worksGrid.querySelectorAll('.work-card')).forEach(c => c.remove());
+  const filtered = activeFilter === 'all' ? works : works.filter(w => w.category === activeFilter);
+  filtered.forEach(w => {
+    const card = document.createElement('div');
+    card.className = 'work-card';
+    card.innerHTML = `
+      <div class="work-img-wrap" data-id="${w.id}">
+        ${w.image
+          ? `<img src="${w.image}" alt="${escHtml(w.title)}" loading="lazy"/>
+             <div class="work-img-overlay">
+               <button class="overlay-view" data-view="${w.id}">View</button>
+             </div>`
+          : `<div class="work-empty"><span style="font-size:2rem;opacity:0.3">◻</span><span>No image</span></div>`
+        }
+      </div>
+      <div class="work-info">
+        <div class="work-tag">${escHtml(CAT_LABELS[w.category]||w.category)}</div>
+        <div class="work-name">${escHtml(w.title||'Untitled')}</div>
+        <div class="work-desc">${escHtml(w.desc||'')}</div>
+        <div class="work-actions">
+          ${w.image ? `<button class="work-action" data-view="${w.id}">View</button>` : ''}
+          <button class="work-action" data-edit="${w.id}">Edit</button>
+          <button class="work-action del" data-del="${w.id}">Remove</button>
+        </div>
+      </div>`;
+    worksGrid.insertBefore(card, addCardBtn);
+  });
+
+  /* Event delegation */
+  worksGrid.querySelectorAll('[data-view]').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const w = works.find(x => x.id == btn.dataset.view);
+      if (w?.image) openLightbox(w.image);
+    });
+  });
+  worksGrid.querySelectorAll('[data-edit]').forEach(btn => {
+    btn.addEventListener('click', e => { e.stopPropagation(); openModal(btn.dataset.edit); });
+  });
+  worksGrid.querySelectorAll('[data-del]').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      if (confirm('Remove this work from your portfolio?')) {
+        works = works.filter(w => w.id != btn.dataset.del);
+        saveWorks(); renderWorks();
+      }
+    });
+  });
+}
+
+function escHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+/* ─────────────────────────────────────────────
+   FILTER TABS
+───────────────────────────────────────────── */
+document.getElementById('filterTabs').addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeFilter = btn.dataset.filter;
+  renderWorks();
+});
+
+/* ─────────────────────────────────────────────
+   BULK UPLOAD (Add Card)
+───────────────────────────────────────────── */
+document.getElementById('bulkInput').addEventListener('change', e => {
+  Array.from(e.target.files).forEach(file => readFile(file, img => {
+    works.unshift({
+      id: Date.now() + Math.random(),
+      title: file.name.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' '),
+      category: 'pubmat', desc: '', image: img
+    });
+    saveWorks(); renderWorks();
+  }));
+  e.target.value = '';
+});
+
+addCardBtn.addEventListener('click', e => {
+  if (e.target.tagName === 'INPUT') return;
+  openModal(null);
+});
+
+/* ─────────────────────────────────────────────
+   MODAL
+───────────────────────────────────────────── */
+const modalBackdrop = document.getElementById('modalBackdrop');
+const previewImg    = document.getElementById('previewImg');
+const previewHint   = document.getElementById('previewHint');
+const modalFileInput= document.getElementById('modalFileInput');
+
+function openModal(id) {
+  editId = id;
+  pendingImg = null;
+  const w = id ? works.find(x => x.id == id) : null;
+  document.getElementById('modalHeading').textContent = id ? 'Edit Work' : 'Add New Work';
+  document.getElementById('wTitle').value    = w?.title    || '';
+  document.getElementById('wCategory').value = w?.category || 'pubmat';
+  document.getElementById('wDesc').value     = w?.desc     || '';
+  modalFileInput.value = '';
+  if (w?.image) {
+    previewImg.src = w.image;
+    previewImg.style.display = 'block';
+    previewHint.style.display = 'none';
+    pendingImg = w.image;
+  } else {
+    previewImg.style.display = 'none';
+    previewHint.style.display = 'block';
+  }
+  modalBackdrop.classList.add('open');
+}
+
+function closeModal() { modalBackdrop.classList.remove('open'); editId = null; pendingImg = null; }
+
+modalFileInput.addEventListener('change', e => {
+  const f = e.target.files[0];
+  if (!f) return;
+  readFile(f, img => {
+    pendingImg = img;
+    previewImg.src = img;
+    previewImg.style.display = 'block';
+    previewHint.style.display = 'none';
+  });
+});
+
+document.getElementById('saveBtn').addEventListener('click', () => {
+  const title    = document.getElementById('wTitle').value.trim();
+  const category = document.getElementById('wCategory').value;
+  const desc     = document.getElementById('wDesc').value.trim();
+  if (!title) { document.getElementById('wTitle').focus(); return; }
+
+  if (editId) {
+    const i = works.findIndex(w => w.id == editId);
+    if (i > -1) works[i] = { ...works[i], title, category, desc, image: pendingImg ?? works[i].image };
+  } else {
+    works.unshift({ id: Date.now() + Math.random(), title, category, desc, image: pendingImg || null });
+  }
+  saveWorks(); renderWorks(); closeModal();
+});
+
+document.getElementById('cancelBtn').addEventListener('click', closeModal);
+document.getElementById('modalClose').addEventListener('click', closeModal);
+modalBackdrop.addEventListener('click', e => { if (e.target === modalBackdrop) closeModal(); });
+
+/* ─────────────────────────────────────────────
+   LIGHTBOX
+───────────────────────────────────────────── */
+const lightbox = document.getElementById('lightbox');
+const lbImg    = document.getElementById('lbImg');
+
+function openLightbox(src) { lbImg.src = src; lightbox.classList.add('open'); }
+document.getElementById('lbClose').addEventListener('click', () => lightbox.classList.remove('open'));
+lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.remove('open'); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { lightbox.classList.remove('open'); closeModal(); }
+});
+
+/* ─────────────────────────────────────────────
+   FILE READER UTILITY
+───────────────────────────────────────────── */
+function readFile(file, cb) {
+  const reader = new FileReader();
+  reader.onload = ev => cb(ev.target.result);
+  reader.readAsDataURL(file);
+}
+
+/* ─────────────────────────────────────────────
+   INIT
+───────────────────────────────────────────── */
+loadWorks();
+</script>
+</body>
+</html>
